@@ -2,12 +2,12 @@
 
 ## 分批计划
 
-### Batch 1 — 高频学科（优先实施）
+### Batch 1 — 高频学科 ✅ 已完成 (2026-03-17)
 - [x] `_template.md` — 配置模板
-- [ ] `translation-languages.md` — 外语翻译类
-- [ ] `economics-management.md` — 经管类
-- [ ] `computer-science.md` — 计算机类
-- [ ] `education.md` — 教育学类
+- [x] `translation-languages.md` — 外语翻译类 (v1.0, 171行)
+- [x] `economics-management.md` — 经管类 (v1.0, 318行)
+- [x] `computer-science.md` — 计算机类 (v1.0, 395行)
+- [x] `education.md` — 教育学类 (v1.0, 353行)
 
 ### Batch 2 — 文科/社科
 - [ ] `literature-culture.md` — 文学文化类
@@ -26,7 +26,12 @@
 - [ ] `medical-nursing.md` — 医学护理类
 - [ ] `philosophy.md` — 哲学伦理类
 
-## 完成后需同步更新
-- [ ] `SKILL.md` — 审阅启动协议增加学科识别步骤
-- [ ] `review_state.json` — thesis 字段增加 discipline
-- [ ] 本地仓库 + 远程 GitHub
+## 基础设施
+- [x] `SKILL.md` — 审阅启动协议增加学科识别 + 用户知识注入 + 知识沉淀步骤
+- [x] `MAINTENANCE.md` — 学科配置维护规范（版本管理、修订流程、质量检查）
+- [ ] `review_state.json` — thesis 字段增加 discipline（待下次使用时实现）
+
+## 维护规范
+- 新增/修订配置参照 `MAINTENANCE.md`
+- 每个配置文件含 version header + Changelog
+- 用户审阅反馈可沉淀为学科通用知识
