@@ -20,11 +20,11 @@
 - [x] `mechanical-civil.md` — 机械土木类 (v1.0, 414行)
 - [x] `math-statistics.md` — 数理统计类 (v1.0, 433行)
 
-### Batch 4 — 专业性强
-- [ ] `chemistry-materials.md` — 化学化工类
-- [ ] `biology-environment.md` — 生物环境类
-- [ ] `medical-nursing.md` — 医学护理类
-- [ ] `philosophy.md` — 哲学伦理类
+### Batch 4 — 专业性强 ✅ 已完成 (2026-03-17)
+- [x] `chemistry-materials.md` — 化学化工类 (v1.0, 422行)
+- [x] `biology-environment.md` — 生物环境类 (v1.0, 429行)
+- [x] `medical-nursing.md` — 医学护理类 (v1.0, 451行)
+- [x] `philosophy.md` — 哲学伦理类 (v1.0, 410行)
 
 ## 基础设施
 - [x] `SKILL.md` — 审阅启动协议增加学科识别 + 用户知识注入 + 知识沉淀步骤
