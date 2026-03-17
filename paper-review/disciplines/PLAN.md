@@ -15,10 +15,10 @@
 - [x] `sociology-public-admin.md` — 社会学/公管类 (v1.0, 416行)
 - [x] `psychology.md` — 心理学类 (v1.0, 569行)
 
-### Batch 3 — 理工科
-- [ ] `electronics-communication.md` — 电子通信类
-- [ ] `mechanical-civil.md` — 机械土木类
-- [ ] `math-statistics.md` — 数理类
+### Batch 3 — 理工科 ✅ 已完成 (2026-03-17)
+- [x] `electronics-communication.md` — 电子通信类 (v1.0, 439行)
+- [x] `mechanical-civil.md` — 机械土木类 (v1.0, 414行)
+- [x] `math-statistics.md` — 数理统计类 (v1.0, 433行)
 
 ### Batch 4 — 专业性强
 - [ ] `chemistry-materials.md` — 化学化工类
