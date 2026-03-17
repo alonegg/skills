@@ -6,6 +6,31 @@
 
 ## 完整工作流
 
+### Step 0：检查审阅状态
+
+在开始任何文档操作之前，先检查输出目录是否已有 `review_state.json`：
+
+```bash
+# 检查是否存在状态文件
+ls <output_dir>/review_state.json
+```
+
+- **不存在** → 首次审阅，继续 Step 1
+- **已存在** → 复审模式，先加载历史状态：
+
+```bash
+python skills/paper-review/scripts/review_state.py load <output_dir>/review_state.json
+```
+
+加载后向用户展示：
+- 累计轮次数
+- 未解决的 S/A 级问题列表
+- 上一轮的 `next_round_focus`
+
+以上信息作为本轮审阅的**起始上下文**，审阅时优先检查这些问题的修订状态。
+
+---
+
 ### Step 1：提取内容
 
 使用 docx 技能解压文档，然后提取文本：
@@ -79,6 +104,51 @@ python skills/docx/scripts/office/pack.py /tmp/review_unpacked/ 论文_已审阅
 5. 复审建议
 
 生成方式参照 docx 技能的 "Creating New Documents" 流程。
+
+### Step 6：持久化审阅状态
+
+审阅完成后，将本轮结果写入 `review_state.json`：
+
+#### 首次审阅
+
+```bash
+# 初始化状态文件
+python skills/paper-review/scripts/review_state.py init <output_dir> \
+  --title "论文题目" --author "学生姓名" --reviewer "审阅人姓名"
+
+# 将本轮问题导出为 JSON（从审阅过程中收集）
+# issues.json: [{"position":"引言","type":"问题不清","severity":"S","description":"...","impact":"...","action":"...","target":"..."}]
+
+# 添加本轮记录
+python skills/paper-review/scripts/review_state.py add-round \
+  <output_dir>/review_state.json \
+  --issues /tmp/review_issues.json \
+  --summary "首轮审阅总结" \
+  --next-focus "下一轮修改重点"
+```
+
+#### 复审
+
+```bash
+# 更新旧问题状态（逐个）
+python skills/paper-review/scripts/review_state.py update-issue \
+  <output_dir>/review_state.json \
+  --id ISS-R1-001 --status RESOLVED --round R2 --note "已修改"
+
+# 添加本轮新问题
+python skills/paper-review/scripts/review_state.py add-round \
+  <output_dir>/review_state.json \
+  --mode RE_REVIEW --issues /tmp/new_issues.json \
+  --summary "复审总结" --next-focus "下一轮重点"
+```
+
+#### 查看跨轮次汇总
+
+```bash
+python skills/paper-review/scripts/review_state.py summary <output_dir>/review_state.json
+```
+
+输出的汇总表可直接用于审核意见文档的"问题跟踪"部分。
 
 ---
 

@@ -132,6 +132,8 @@
 
 ## Template 5：复审报告
 
+复审报告的数据来源于 `review_state.json`，通过 `review_state.py load` 和 `review_state.py summary` 获取。
+
 ```markdown
 # 第N轮复审报告
 
@@ -140,20 +142,23 @@
 
 ## 上轮问题处理结果
 
-| 编号 | 原级别 | 状态 | 说明 |
-|---|---|---|---|
-| T1 | S | RESOLVED | 研究问题已明确 |
-| T2 | A | PARTIALLY_RESOLVED | 空白已提但切口仍不够具体 |
-| T3 | A | UNRESOLVED | 建议仍偏口号化 |
+| 编号 | 首发轮次 | 原级别 | 当前级别 | 状态 | 说明 |
+|---|---|---|---|---|---|
+| ISS-R1-001 | R1 | S | S | RESOLVED | 研究问题已明确 |
+| ISS-R1-002 | R1 | A | A | PARTIALLY_RESOLVED | 空白已提但切口仍不够具体 |
+| ISS-R1-003 | R1 | A | A | UNRESOLVED | 建议仍偏口号化 |
+
+> 编号使用 `ISS-Rn-xxx` 格式，与 `review_state.json` 中的 `id` 字段一致。
 
 ## 新发现问题
-[列出本轮新发现的问题]
+[列出本轮新发现的问题，编号从 ISS-RN-001 开始]
 
 ## 本轮总结
 - 已解决：N个
 - 部分解决：N个
 - 未解决：N个
 - 新问题：N个
+- 升级：N个 / 降级：N个
 
 ## 下一步建议
 [建议下一轮重点]
@@ -214,7 +219,7 @@
 
 ## Template 8：问题汇总表
 
-用于跨轮次追踪所有问题状态：
+用于跨轮次追踪所有问题状态。**数据来源**：`review_state.json`，可通过 `review_state.py summary` 命令自动生成文本版汇总。
 
 ```markdown
 # 问题汇总表
@@ -223,15 +228,25 @@
 - 累计发现问题：N个
 - 已解决：N个 / 部分解决：N个 / 未解决：N个
 - S级：N个（已解决M个） / A级：N个（已解决M个）
+- 解决率：X%
 
 ## 问题跟踪
 
 | 编号 | 首发轮次 | 级别 | 位置 | 类型 | 描述 | 当前状态 | 状态变更历史 |
 |---|---|---|---|---|---|---|---|
-| ISS-R1-001 | R1 | S | 引言 | 问题不清 | 核心研究问题未明确 | RESOLVED (R2) | OPEN→IN_PROGRESS→RESOLVED |
-| ISS-R1-002 | R1 | A | 综述 | 位置缺失 | 综述未引出研究位置 | PARTIALLY_RESOLVED (R2) | OPEN→PARTIALLY_RESOLVED |
-| ISS-R2-001 | R2 | B | 分析§3 | 解释不足 | 数据已呈现但缺少原因分析 | OPEN | — |
+| ISS-R1-001 | R1 | S | 引言 | 问题不清 | 核心研究问题未明确 | RESOLVED (R2) | OPEN(R1)→RESOLVED(R2) |
+| ISS-R1-002 | R1 | A | 综述 | 位置缺失 | 综述未引出研究位置 | PARTIALLY_RESOLVED (R2) | OPEN(R1)→PARTIALLY_RESOLVED(R2) |
+| ISS-R2-001 | R2 | B | 分析§3 | 解释不足 | 数据已呈现但缺少原因分析 | OPEN | OPEN(R2) |
+
+## 轮次趋势（多轮时展示）
+
+| 轮次 | 新增 | 解决 | 部分解决 | 累计Open |
+|---|---|---|---|---|
+| R1 | 15 | — | — | 15 |
+| R2 | 3 | 8 | 4 | 6 |
 ```
+
+> 问题编号、状态、变更历史均与 `review_state.json` 保持一致，确保跨轮次可追踪。
 
 ---
 
