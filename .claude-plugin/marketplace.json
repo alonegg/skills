@@ -1,0 +1,23 @@
+{
+  "name": "alonegg-skills",
+  "owner": {
+    "name": "alonegg",
+    "email": ""
+  },
+  "metadata": {
+    "description": "Personal skills collection: paper review and document editing",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "my-skills",
+      "description": "Paper review workflow and Word document editing skills",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./docx",
+        "./paper-review"
+      ]
+    }
+  ]
+}
