@@ -1,0 +1,34 @@
+data:
+  raw_path: data/raw/data.csv
+  processed_path: data/processed/clean.parquet
+  target_column: target
+  test_size: 0.2
+  random_seed: 42
+
+features:
+  numeric: []      # filled automatically by pipeline
+  categorical: []  # filled automatically by pipeline
+  drop: []         # columns to drop before training
+
+model:
+  type: lightgbm   # lightgbm | xgboost | sklearn_rf | logistic | ridge
+  n_estimators: 300
+  learning_rate: 0.05
+  num_leaves: 63
+  max_depth: -1
+
+tuning:
+  enabled: false
+  n_trials: 50
+  timeout_seconds: 300
+
+evaluation:
+  cv_folds: 5
+  metrics:
+    classification: [f1_weighted, roc_auc, accuracy]
+    regression: [neg_mean_absolute_error, r2, neg_root_mean_squared_error]
+
+output:
+  model_dir: models
+  reports_dir: reports
+  figures_dir: reports/figures
