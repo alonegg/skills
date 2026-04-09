@@ -1,0 +1,20 @@
+name: ml-analysis
+display_name: ML Analysis & Prediction
+description: >
+  Autonomous ML pipeline: EDA, feature engineering, baseline model,
+  main model training, evaluation, and report generation.
+accept_file_types: [".csv", ".xlsx", ".json", ".zip"]
+max_file_size_mb: 500
+default_prompt: |
+  使用 ml-analysis skill 分析 {input_path} 中的数据。
+  自动检测目标列（如果 event 未指定，则选择最后一列或二分类列）。
+  执行完整流程：EDA → 特征工程 → baseline → 主模型 → 评估。
+  所有输出保存到 {output_dir}。
+  控制总执行时间在 10 分钟内。
+expected_outputs:
+  - metrics.json
+  - report.md
+lambda_hints:
+  memory_mb: 4096
+  timeout_sec: 900
+  ephemeral_storage_mb: 2048
