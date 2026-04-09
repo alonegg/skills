@@ -1,0 +1,19 @@
+name: paper-review
+display_name: Paper Review & Annotation
+description: >
+  Systematic multi-round academic review for undergraduate theses.
+  Outputs structured diagnostics, paragraph-level suggestions,
+  and annotated DOCX files with tracked comments.
+accept_file_types: [".docx", ".pdf"]
+max_file_size_mb: 100
+default_prompt: |
+  使用 paper-review skill 审阅 {input_path} 中的论文。
+  按照"全文理解→结构审查→段落精审→问题聚合→复审迭代"五阶段流程执行。
+  输出结构性诊断、段落级修改建议、修订任务单。
+  所有输出保存到 {output_dir}。
+expected_outputs:
+  - report.md
+lambda_hints:
+  memory_mb: 2048
+  timeout_sec: 600
+  ephemeral_storage_mb: 1024
