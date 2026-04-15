@@ -11,8 +11,15 @@ default_prompt: |
   按照"全文理解→结构审查→段落精审→问题聚合→复审迭代"五阶段流程执行。
   输出结构性诊断、段落级修改建议、修订任务单。
   所有输出保存到 {output_dir}。
+# DSCC two-tier output contract (consumed by handler.py validator / prompt
+# builder). Other agents that read SKILL.md directly ignore these fields.
+#
+# expected_outputs    -> REQUIRED; missing any downgrades task to `partial`
+# recommended_outputs -> RECOMMENDED; missing any is a note only
 expected_outputs:
   - report.md
+recommended_outputs:
+  - review_state.json
 lambda_hints:
   memory_mb: 2048
   timeout_sec: 600
