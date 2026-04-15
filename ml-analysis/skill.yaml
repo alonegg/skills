@@ -11,9 +11,19 @@ default_prompt: |
   执行完整流程：EDA → 特征工程 → baseline → 主模型 → 评估。
   所有输出保存到 {output_dir}。
   控制总执行时间在 10 分钟内。
+# DSCC two-tier output contract (consumed by handler.py validator / prompt
+# builder). Other agents that read SKILL.md directly ignore these fields.
+#
+# expected_outputs    -> REQUIRED; missing any downgrades task to `partial`
+# recommended_outputs -> RECOMMENDED; missing any is a note only
 expected_outputs:
   - metrics.json
   - report.md
+recommended_outputs:
+  - model.joblib
+  - eda_target_distribution.png
+  - eda_feature_correlation.png
+  - feature_importance.png
 lambda_hints:
   memory_mb: 4096
   timeout_sec: 900
